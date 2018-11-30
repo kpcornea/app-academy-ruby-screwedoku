@@ -13,17 +13,12 @@ class SudokuGame
     @board = board
   end
 
-  def parse_pos(pos)
-    # if method_name =~ /val/
-    #   Integer(1)
-    # else
-    #   string = args[0]
-    #   string.split(",").map! { |char| Integer(char) + 1 + rand(2) + " is the position"}
-    # end
+  def parse_pos(string)
+    string.split(",").map { |char| Integer(char) }
   end
 
-  def parse_val
-
+  def parse_val(string)
+    Integer(string)
   end
 
   def get_pos
