@@ -1,3 +1,4 @@
+require "byebug"
 require_relative "tile"
 
 class Board
@@ -10,17 +11,20 @@ class Board
   end
 
   def self.from_file(filename)
+    byebug
     rows = File.readlines(filename).map(&:chomp)
+    byebug
     tiles = rows.map do |row|
       nums = row.split("").map { |char| Integer(char) }
       nums.map { |num| Tile.new(num) }
     end
-
+byebug
     self.new(tiles)
   end
 
   def initialize(grid = self.empty_grid)
     @grid = grid
+    @rows = nil
   end
 
   def [](pos)
@@ -50,12 +54,14 @@ class Board
     grid.size
   end
 
-  alias_method :rows, :size
+  # alias_method :rows, :size
 
   def solved?
+    byebug
     rows.all? { |row| solved_set?(row) } &&
       columns.all? { |col| solved_set?(col) } &&
       squares.all? { |square| solved_set?(square) }
+      byebug
   end
 
   def solved_set?(tiles)
